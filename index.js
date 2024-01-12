@@ -1,7 +1,14 @@
 // Outline The Project Structures
 const prompt = require('prompt-sync')()
 //read the current page
-function showPage( ){
+function showPage(page){
+    console.log(page.text)
+
+    page.choices.forEach((choice,index) => {
+        console.log('(${index + 1} ${choice}')
+    });
+
+
     console.log('You walk out the door')
     console.log('(1) You walk out the door to the left')
     console.log('(2) You walk out the door to the right')    
@@ -30,12 +37,20 @@ class Page {
 constructor(text,choices = []){
     this.text=text
     this.choices=choices
-}
-
+    }
 }
 const page = new Page ('You are dead')
+
+class Choice {
+    constructor(text, action){
+this.text=text
+this.action=action
+
+    }
+}
 
 showPage()
 const choice = getUserChoice()
 handleChoice(choice)
 
+//Anytime you have one thing you want to treat as more than one thing it must be an array or an object
